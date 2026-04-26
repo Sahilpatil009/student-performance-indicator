@@ -9,8 +9,16 @@ os.makedirs(logs_dir, exist_ok=True)
 
 LOG_FILE_PATH = os.path.join(logs_dir, LOG_FILE)
 
-logging.basicConfig(
-    filename=LOG_FILE_PATH,
-    format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
-    level=logging.INFO,
-)
+LOG_FORMAT = "[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s"
+
+try:
+    logging.basicConfig(
+        filename=LOG_FILE_PATH,
+        format=LOG_FORMAT,
+        level=logging.INFO,
+    )
+except PermissionError:
+    logging.basicConfig(
+        format=LOG_FORMAT,
+        level=logging.INFO,
+    )
