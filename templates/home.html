@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths Score Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <nav class="topbar compact" aria-label="Main navigation">
+            <a class="brand-mark" href="{{ url_for('index') }}">SPI</a>
+            <a class="ghost-link" href="{{ url_for('index') }}">Home</a>
+        </nav>
+
+        <section class="predict-layout">
+            <aside class="summary-panel">
+                <p class="eyebrow">Prediction Form</p>
+                <h1>Student Exam Performance Indicator</h1>
+                <p>
+                    Fill in the student's details and scores. The model will estimate the expected maths score.
+                </p>
+
+                {% if results %}
+                <div class="result-box">
+                    <span>Predicted Maths Score</span>
+                    <strong>{{ "%.2f"|format(results) }}</strong>
+                </div>
+                {% else %}
+                <div class="result-box muted">
+                    <span>Prediction</span>
+                    <strong>Ready</strong>
+                </div>
+                {% endif %}
+            </aside>
+
+            <form class="prediction-form" action="{{ url_for('predict') }}" method="post">
+                <div class="form-heading">
+                    <h2>Enter Student Details</h2>
+                    <p>All fields are required for a reliable prediction.</p>
+                </div>
+
+                <div class="form-grid">
+                    <label class="field">
+                        <span>Gender</span>
+                        <select name="gender" required>
+                            <option selected disabled value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        <span>Race or Ethnicity</span>
+                        <select name="ethnicity" required>
+                            <option selected disabled value="">Select group</option>
+                            <option value="group A">Group A</option>
+                            <option value="group B">Group B</option>
+                            <option value="group C">Group C</option>
+                            <option value="group D">Group D</option>
+                            <option value="group E">Group E</option>
+                        </select>
+                    </label>
+
+                    <label class="field wide">
+                        <span>Parental Level of Education</span>
+                        <select name="parental_education" required>
+                            <option selected disabled value="">Select education level</option>
+                            <option value="associate's degree">Associate's degree</option>
+                            <option value="bachelor's degree">Bachelor's degree</option>
+                            <option value="high school">High school</option>
+                            <option value="master's degree">Master's degree</option>
+                            <option value="some college">Some college</option>
+                            <option value="some high school">Some high school</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        <span>Lunch Type</span>
+                        <select name="lunch" required>
+                            <option selected disabled value="">Select lunch type</option>
+                            <option value="free/reduced">Free/reduced</option>
+                            <option value="standard">Standard</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        <span>Test Preparation</span>
+                        <select name="test_preparation_course" required>
+                            <option selected disabled value="">Select status</option>
+                            <option value="none">None</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        <span>Reading Score</span>
+                        <input type="number" name="reading_score" placeholder="0 - 100" min="0" max="100" required>
+                    </label>
+
+                    <label class="field">
+                        <span>Writing Score</span>
+                        <input type="number" name="writing_score" placeholder="0 - 100" min="0" max="100" required>
+                    </label>
+                </div>
+
+                <button class="primary-action full-width" type="submit">Predict Maths Score</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

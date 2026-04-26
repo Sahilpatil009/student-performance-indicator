@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Indicator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="landing-shell">
+        <section class="hero-panel">
+            <nav class="topbar" aria-label="Main navigation">
+                <span class="brand-mark">SPI</span>
+                <a class="ghost-link" href="{{ url_for('predict') }}">Open Predictor</a>
+            </nav>
+
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">Student Exam Performance</p>
+                    <h1>Predict maths scores with a clean machine learning workflow.</h1>
+                    <p class="hero-text">
+                        Enter academic and background details, then let the trained model estimate a student's maths performance.
+                    </p>
+                    <a class="primary-action" href="{{ url_for('predict') }}">Start Prediction</a>
+                </div>
+
+                <div class="score-visual" aria-label="Performance dashboard preview">
+                    <div class="metric-strip">
+                        <span>Reading</span>
+                        <strong>82</strong>
+                    </div>
+                    <div class="metric-strip accent">
+                        <span>Writing</span>
+                        <strong>78</strong>
+                    </div>
+                    <div class="prediction-ring">
+                        <span>Predicted</span>
+                        <strong>80</strong>
+                    </div>
+                    <div class="bar-chart" aria-hidden="true">
+                        <span style="height: 52%"></span>
+                        <span style="height: 68%"></span>
+                        <span style="height: 80%"></span>
+                        <span style="height: 62%"></span>
+                        <span style="height: 88%"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
